@@ -30,7 +30,7 @@ Pour faire fonctionner ce projet sur votre machine locale, veuillez suivre les �
 
 ```bash
 # 1. Cloner le dépôt 
-git clone https://github.com/thomasetienne35-svg/minecraft.git
+git clone https://github.com/thomasetienne35-svg/Statistiques_sur_Minecraft.git
 
 # 2. Entrer le nom du dossier du projet
 cd minecraft
