@@ -5,7 +5,7 @@ import random
 enchantements = {
     "Affilage": 3,
     "Affinité aquatique": 1,
-    "Agilité aquatique": 3, 
+    "Agilité aquatique": 3,
     "Apnée": 3,
     "Appât": 3,
     "Aura de feu": 2,
@@ -29,22 +29,24 @@ enchantements = {
     "Malédiction de disparition": 1,
     "Malédiction du lien éternel": 1,
     "Perforation": 4,
-    "Protection": 4	,
+    "Protection": 4,
     "Protection contre le feu": 4,
     "Protection contre les explosions": 4,
     "Protection contre les projectiles": 4,
     "Puissance": 5,
-    "Raccommodage": 1, #c'est l'enchantement qui nous intéresse
+    "Raccommodage": 1,  # c'est l'enchantement qui nous intéresse
     "Recul": 2,
     "Semelles givrantes": 2,
     "Solidité": 3,
     "Tir multiple": 1,
     "Toucher de soie": 1,
-    "Tranchant": 5
+    "Tranchant": 5,
 }
+
 
 class Villageois:
     """Création d'un villageois libraire."""
+
     def __init__(self, enchantements: dict) -> None:
         """Initialise un nouveau villageois libraire.
 
@@ -57,11 +59,11 @@ class Villageois:
         self.echange: str | tuple[str, int] | None = None
         self.reinitialisation: int = 0
         self.enchantements: dict[str, int] = enchantements
-    
+
     def new_trade(self) -> None:
         """Simulation d'un nouvel échange proposer par un villageois libraire."""
         self.reinitialisation = self.reinitialisation + 1
-        
+
         sell = ["bibliothèque", "livre enchanté"]
         if random.choice(sell) == "bibliothèque":
             self.echange = "bibliothèque"

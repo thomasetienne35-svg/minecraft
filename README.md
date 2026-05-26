@@ -75,10 +75,10 @@ Assurez-vous d'être dans votre environnement virtuel, puis exécutez les comman
 
 **1. Pour vérifier le code (Linter) :**
 ```bash
-python -m ruff check .
+python -m ruff check 
 ```
 
 **2. Pour formater le code automatiquement (Formatter) :**
 ```bash
-python -m ruff format .
+python -m ruff format 
 ```
