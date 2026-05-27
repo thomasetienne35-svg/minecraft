@@ -1,5 +1,4 @@
-# Test d’adéquation du Chi-deux et loi géométrique : application au jeu
-Minecraft
+# Test d’adéquation du Chi-deux et loi géométrique : application au jeu Minecraft
 Thomas Etienne
 
 ``` r
