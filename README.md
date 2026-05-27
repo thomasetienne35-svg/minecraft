@@ -6,7 +6,7 @@
 Dans le jeu vidéo Minecraft, l'enchantement **"Raccommodage" (ou Mending en anglais)** est très pratique pour réparer des outils. L'obtention de ce dernier via un villageois libraire (un personnage virtuel vendant des livres enchantés) est soumise à une double contrainte aléatoire. Il y a une chance sur deux qu'il vende le bon objet (un livre enchanté) puis une chance sur 38 d'avoir l'enchantement Raccommodage sur ce livre. Tous les événements sont indépendants. 
 Dans le jeu, il est possible de réinitialiser indéfiniment les objets vendus par le villageois en cassant sa station de travail (un pupitre) puis en la reposant. On cherche donc à savoir combien de réinitialisation on doit faire avant d'avoir l'enchantement voulu. On va compter le nombre de réinitialisations qu'il faut pour un grand nombre de villageois.
 
-Ce projet vise à modéliser mathématiquement ce système en programmation orientée objet (Python) et à réaliser une simulation (100 000 itérations) pour déterminer le nombre précis de réinitialisations nécessaires pour obtenir cet enchantement avec un **seuil de confiance de 95%**. 
+Ce projet vise à modéliser mathématiquement ce système en programmation orientée objet (Python) et à réaliser une simulation (100 000 itérations) pour déterminer le nombre précis de réinitialisations nécessaires pour obtenir cet enchantement avec un **seuil de confiance de 95%** (R). 
 
 ---
 
