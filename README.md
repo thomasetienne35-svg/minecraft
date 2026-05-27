@@ -1,4 +1,4 @@
-# Simulateur d'Enchantement Minecraft
+# Simulation et analyse de données sur Minecraft
 
 ---
 
