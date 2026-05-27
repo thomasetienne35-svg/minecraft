@@ -86,6 +86,5 @@ python -m ruff format
 ## Analyse sur R
 
 Une fois les données récoltées via le script Python, une analyse complète de l'adéquation à la loi géométrique a été réalisée sous R.
-```bash
-[Cliquez ici pour voir le rapport statistique complet et les graphiques](rapport_minecraft.md)
-```
+
+[Cliquez ici pour voir le rapport statistique et le graphiques](rapport_minecraft.md)
