@@ -2,9 +2,13 @@
 title: "Test d'adéquation du Chi-deux et loi géométrique : application au jeu Minecraft"
 author: "Thomas Etienne"
 format: gfm
+pdf: default
 ---
 
 ```{r}
+#| message: false
+#| warning: false
+
 library(dplyr)
 library(ggplot2)
 ```

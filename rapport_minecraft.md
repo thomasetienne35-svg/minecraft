@@ -4,20 +4,6 @@ Thomas Etienne
 
 ``` r
 library(dplyr)
-```
-
-
-    Attachement du package : 'dplyr'
-
-    Les objets suivants sont masqués depuis 'package:stats':
-
-        filter, lag
-
-    Les objets suivants sont masqués depuis 'package:base':
-
-        intersect, setdiff, setequal, union
-
-``` r
 library(ggplot2)
 ```
 
