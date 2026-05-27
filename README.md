@@ -83,6 +83,8 @@ python -m ruff check
 python -m ruff format 
 ```
 
+---
+
 ## Analyse sur R
 
 Une fois les données récoltées via le script Python, une analyse complète de l'adéquation à la loi géométrique a été réalisée sous R.
