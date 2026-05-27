@@ -1,0 +1,146 @@
+# Test d’adéquation du Chi-deux et loi géométrique : application au jeu
+Minecraft
+Thomas Etienne
+
+``` r
+library(dplyr)
+```
+
+
+    Attachement du package : 'dplyr'
+
+    Les objets suivants sont masqués depuis 'package:stats':
+
+        filter, lag
+
+    Les objets suivants sont masqués depuis 'package:base':
+
+        intersect, setdiff, setequal, union
+
+``` r
+library(ggplot2)
+```
+
+``` r
+donnees <- read.csv2("resultats_minecraft.csv")
+```
+
+``` r
+str(donnees)
+```
+
+    'data.frame':   100000 obs. of  1 variable:
+     $ tentatives: int  468 28 62 164 51 91 52 7 16 92 ...
+
+``` r
+max(donnees)
+```
+
+    [1] 824
+
+``` r
+effectif <- donnees %>% 
+  group_by(tentatives) %>% 
+  count() %>%
+  rename(occurance = n)
+```
+
+La première étape de notre analyse est de verifier l’adéquation de notre
+simulation. Nous nous attendons à ce que nos données suivent une loi
+géométrique.
+
+En effet, nous comptons le nombre d’épreuves de Bernoulli indépendantes
+de probabilité de succès $p ∈ ]0,1[$ ($p=1/76$) nécessaires pour obtenir
+le premier succès.
+
+Pour prouver cela nous allons utiliser un test d’adéquation du Chi-deux
+pour vérifier que nos données suivent une loi géométrique de paramètre
+p=1/76. Notre distribution s’étend de 1 à 824, mais la queue de cette
+distribution comporte de nombreuses classes dont les effectifs
+théoriques attendus nuls ou inférieurs à 5. Pour que l’approximation de
+notre test soit valide (règle de Cochran), nous allons fusionner toutes
+les classes extrêmes (dont l’effectif théorique attendu est inférieur à
+5) en une seule et même modalité afin de garantir que tous les effectifs
+théoriques pris en compte soient supérieurs ou égaux à 5.
+
+``` r
+n_simulations <- nrow(donnees)
+p_succes <- 1/76
+
+x_test <- 1:2000
+effectifs_theoriques <- n_simulations * dgeom(x_test - 1, prob = p_succes)
+
+limite <- max(x_test[effectifs_theoriques >= 5])
+
+cat("Seuil de regroupement calculé selon Cochran :", limite, "essais\n\n")
+```
+
+    Seuil de regroupement calculé selon Cochran : 421 essais
+
+``` r
+obs_comptage <- table(factor(donnees$tentatives, levels = 1:limite))
+obs_reste <- sum(donnees$tentatives > limite)
+observations_finales <- c(obs_comptage, obs_reste)
+
+prob_theorique <- dgeom(0:(limite - 1), prob = p_succes)
+prob_theorique_reste <- 1 - sum(prob_theorique)
+probabilites_finales <- c(prob_theorique, prob_theorique_reste)
+
+resultat_test <- chisq.test(x = as.numeric(observations_finales), p = probabilites_finales)
+
+print(resultat_test)
+```
+
+
+        Chi-squared test for given probabilities
+
+    data:  as.numeric(observations_finales)
+    X-squared = 410.44, df = 421, p-value = 0.6346
+
+La p-value étant bien supérieure au seuil de 0,05 (0,6346) on ne rejette
+donc pas l’hypothèse nulle qui est que nos données suivent une loi
+géométrique de paramètre p=1/76. Nous pouvons représenter graphiquement
+nos résultas.
+
+``` r
+p_succes <- 1/76
+seuil_95 <- qgeom(0.95, prob = p_succes) + 1
+n_simulations <- 100000
+
+label_seuil <- paste0("Quantile théorique d'ordre 0,95 (", seuil_95, " réinitialisations)")
+label_theorie <- "Effectifs théoriques (Loi géométrique de paramètre p=1/76)"
+
+ggplot(data = effectif, mapping = aes(x = tentatives, y = occurance)) +
+  geom_col(fill = "steelblue", width = 1) + 
+  geom_line(aes(y = n_simulations * dgeom(tentatives - 1, prob = p_succes), color = "theorie"), linewidth = 0.8) +
+  geom_vline(aes(xintercept = seuil_95, color = "seuil"), linetype = "dashed", linewidth = 0.5) +
+  scale_color_manual(
+    name = NULL, 
+    values = c("theorie" = "black", "seuil" = "firebrick"),
+    labels = c("theorie" = label_theorie, "seuil" = label_seuil)
+  ) +
+  theme_minimal(base_size = 12) +
+  labs(
+    title = "Distribution des réinitialisations nécessaires",
+    subtitle = "Simulation sur 100 000 villageois",
+    x = "Nombre de réinitialisations (casser/reposer le pupitre)",
+    y = "Nombre d'occurrences",
+    caption = "Note de lecture : Visualisation des effectifs simulés et théoriques, avec par exemple 1345 succès dès le 1er\nessai. Le quantile théorique d'ordre 0,95 indique que 95 % des villageois vendrons l'enchantement raccom-\nmodage en moins de 227 réinitialisations."
+  ) +
+  theme(
+    plot.title = element_text(face = "bold", size = 14),
+    panel.grid.minor = element_blank(),
+    panel.background = element_rect(fill = "gray90", color = NA),
+    legend.position = "bottom",          
+    legend.direction = "vertical",       
+    legend.justification = "left",       
+    legend.margin = margin(t = 0),       
+    plot.caption = element_text(hjust = 0, face = "italic", color = "gray30", margin = margin(t = 15))
+  )
+```
+
+![](rapport_minecraft_files/figure-commonmark/unnamed-chunk-6-1.png)
+
+On remarque que le quantile empirique issu de notre simulation et le
+quantile théorique calculé via la loi géométrique sont strictement
+identiques (227 réinitialisations).

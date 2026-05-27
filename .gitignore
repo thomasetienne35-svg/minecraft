@@ -8,3 +8,16 @@ __pycache__/
 .coverage
 
 resultats_minecraft.csv
+.Rproj.user
+
+
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+
+/.quarto/
+
+*_cache/
+
+.DS_Store
