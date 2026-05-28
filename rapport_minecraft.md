@@ -40,7 +40,7 @@ le premier succès.
 
 Pour prouver cela nous allons utiliser un test d’adéquation du Chi-deux
 pour vérifier que nos données suivent une loi géométrique de paramètre
-p=1/76. Notre distribution s’étend de 1 à 824, mais la queue de cette
+$p=1/76$. Notre distribution s’étend de 1 à 824, mais la queue de cette
 distribution comporte de nombreuses classes dont les effectifs
 théoriques attendus nuls ou inférieurs à 5. Pour que l’approximation de
 notre test soit valide (règle de Cochran), nous allons fusionner toutes
@@ -82,9 +82,9 @@ print(resultat_test)
     data:  as.numeric(observations_finales)
     X-squared = 410.44, df = 421, p-value = 0.6346
 
-La p-value étant bien supérieure au seuil de 0,05 (0,6346) on ne rejette
+La p-value étant bien supérieure au seuil de $0,05$ ($0,6346$) on ne rejette
 donc pas l’hypothèse nulle qui est que nos données suivent une loi
-géométrique de paramètre p=1/76. Nous pouvons représenter graphiquement
+géométrique de paramètre $p=1/76$. Nous pouvons représenter graphiquement
 nos résultas.
 
 ``` r

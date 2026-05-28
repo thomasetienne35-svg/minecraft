@@ -32,7 +32,7 @@ La première étape de notre analyse est de verifier l'adéquation de notre simu
 
 En effet, nous comptons le nombre d'épreuves de Bernoulli indépendantes de probabilité de succès $p ∈ ]0,1[$ ($p=1/76$) nécessaires pour obtenir le premier succès.
 
-Pour prouver cela nous allons utiliser un test d'adéquation du Chi-deux pour vérifier que nos données suivent une loi géométrique de paramètre p=1/76. Notre distribution s'étend de 1 à 824, mais la queue de cette distribution comporte de nombreuses classes dont les effectifs théoriques attendus nuls ou inférieurs à 5. Pour que l'approximation de notre test soit valide (règle de Cochran), nous allons fusionner toutes les classes extrêmes (dont l'effectif théorique attendu est inférieur à 5) en une seule et même modalité afin de garantir que tous les effectifs théoriques pris en compte soient supérieurs ou égaux à 5.
+Pour prouver cela nous allons utiliser un test d'adéquation du Chi-deux pour vérifier que nos données suivent une loi géométrique de paramètre $p=1/76$. Notre distribution s'étend de 1 à 824, mais la queue de cette distribution comporte de nombreuses classes dont les effectifs théoriques attendus nuls ou inférieurs à 5. Pour que l'approximation de notre test soit valide (règle de Cochran), nous allons fusionner toutes les classes extrêmes (dont l'effectif théorique attendu est inférieur à 5) en une seule et même modalité afin de garantir que tous les effectifs théoriques pris en compte soient supérieurs ou égaux à 5.
 
 ```{r}
 n_simulations <- nrow(donnees)
@@ -58,7 +58,7 @@ resultat_test <- chisq.test(x = as.numeric(observations_finales), p = probabilit
 print(resultat_test)
 ```
 
-La p-value étant bien supérieure au seuil de 0,05 (0,6346) on ne rejette donc pas l'hypothèse nulle qui est que nos données suivent une loi géométrique de paramètre p=1/76. Nous pouvons représenter graphiquement nos résultas.
+La p-value étant bien supérieure au seuil de 0,05 (0,6346) on ne rejette donc pas l'hypothèse nulle qui est que nos données suivent une loi géométrique de paramètre $p=1/76$. Nous pouvons représenter graphiquement nos résultas.
 
 ```{r}
 p_succes <- 1/76
