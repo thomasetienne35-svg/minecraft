@@ -1,12 +1,12 @@
-# Simulateur d'Enchantement Minecraft
+# Simulation et analyse de données sur Minecraft
 
 ---
 
 ## Objectif du projet
 Dans le jeu vidéo Minecraft, l'enchantement **"Raccommodage" (ou Mending en anglais)** est très pratique pour réparer des outils. L'obtention de ce dernier via un villageois libraire (un personnage virtuel vendant des livres enchantés) est soumise à une double contrainte aléatoire. Il y a une chance sur deux qu'il vende le bon objet (un livre enchanté) puis une chance sur 38 d'avoir l'enchantement Raccommodage sur ce livre. Tous les événements sont indépendants. 
-Dans le jeu, il est possible de réinitialiser indéfiniment les objets vendus par le villageois en cassant sa station de travail (un pupitre) puis en la reposant. On cherche donc a savoir combien de de réinitialisation on doit faire avant d'avoir l'enchantement voulu. On va compter le nombre de réinitialisation qu'il faut pour un grand nombre de villageois.
+Dans le jeu, il est possible de réinitialiser indéfiniment les objets vendus par le villageois en cassant sa station de travail (un pupitre) puis en la reposant. On cherche donc à savoir combien de réinitialisation on doit faire avant d'avoir l'enchantement voulu. On va compter le nombre de réinitialisations qu'il faut pour un grand nombre de villageois.
 
-Ce projet vise à modéliser mathématiquement ce système en programmation orientée objet (Python) et à réaliser une simulation (100 000 itérations) pour déterminer le nombre précis de réinitialisations nécessaires pour obtenir cet enchantement avec un **seuil de confiance de 95%**. 
+Ce projet vise à modéliser mathématiquement ce système en programmation orientée objet (Python) et à réaliser une simulation (100 000 itérations) pour déterminer le nombre précis de réinitialisations nécessaires pour obtenir cet enchantement avec un **seuil de confiance de 95%** (R). 
 
 ---
 
@@ -23,6 +23,9 @@ Le projet combine l'ingénierie logicielle (Python) et l'analyse statistique (R)
 * **`tests/test_villageois.py`** : Contient les tests unitaires (via `pytest`) garantissant le bon fonctionnement de la classe avec une couverture de 100%.
 * **`main.py`** : Script principal orchestrant la simulation sur 100 000 agents et exportant les données brutes au format CSV.
 * **`requirements.txt`** : Liste des dépendances Python pour garantir la reproductibilité du projet.
+* **`rapport_minecraft.qmd`** : Le code source Quarto (R) contenant l'analyse statistique et la génération des graphiques.
+* **`rapport_minecraft.md`** : Le rapport de la partie R, lisible directement sur GitHub.
+
 
 ##  Installation 
 
@@ -33,7 +36,7 @@ Pour faire fonctionner ce projet sur votre machine locale, veuillez suivre les �
 git clone https://github.com/thomasetienne35-svg/Statistiques_sur_Minecraft.git
 
 # 2. Entrer le nom du dossier du projet
-cd minecraft
+cd Statistiques_sur_Minecraft
 
 # 3. Créer et activer l'environnement virtuel (nommé.venv):
 python3 -m venv .venv
@@ -90,3 +93,10 @@ python -m ruff format
 Une fois les données récoltées via le script Python, une analyse complète de l'adéquation à la loi géométrique a été réalisée sous R.
 
 [Cliquez ici pour voir le rapport statistique et le graphiques](rapport_minecraft.md)
+
+---
+
+## Conclusion 
+
+La simulation sur 100 000 villageois confirme le modèle théorique. L'obtention de l'enchantement *Raccommodage* suit rigoureusement une loi géométrique de paramètre p=1/76. 
+Concrètement, l'analyse démontre qu'il faut prévoir un maximum de **227 réinitialisations** du pupitre pour avoir 95 % de chances d'obtenir l'enchantement souhaité.
